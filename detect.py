@@ -8,10 +8,10 @@ import matplotlib.pyplot as plt
 from matplotlib import pyplot as plt
 from skimage.color import rgb2gray
 from skimage.feature import match_template, peak_local_max
-from skimage.io import imread, imshow
+from skimage.io import imread, imsave, imshow
 
 # Set directory path of current folder
-DATA_DIR = os.path.dirname(os.path.abspath(__file__)) + "\\data\\test"
+DATA_DIR = os.path.dirname(os.path.abspath(__file__)) + "\\data\\toy"
 before_image = f"{DATA_DIR}\\after.jpg"
 template_image = f"{DATA_DIR}\\template.jpg"
 mask_image = f"{DATA_DIR}\\mask.jpg"
@@ -39,4 +39,6 @@ for x, y in peak_local_max(result, threshold_abs=0.5):
                          fc='none')
     plt.gca().add_patch(rect)
 
+output = f"{DATA_DIR}\\result.jpg"
+imsave(output,result)
 plt.show()
