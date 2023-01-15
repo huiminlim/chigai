@@ -11,8 +11,8 @@ from skimage.feature import match_template, peak_local_max
 from skimage.io import imread, imshow
 
 # Set directory path of current folder
-DATA_DIR = os.path.dirname(os.path.abspath(__file__)) + "\\data"
-before_image = f"{DATA_DIR}\\before.jpg"
+DATA_DIR = os.path.dirname(os.path.abspath(__file__)) + "\\data\\test"
+before_image = f"{DATA_DIR}\\after.jpg"
 template_image = f"{DATA_DIR}\\template.jpg"
 mask_image = f"{DATA_DIR}\\mask.jpg"
 
