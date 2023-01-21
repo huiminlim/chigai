@@ -1,3 +1,6 @@
+# This program extracts first/last frames from video files
+# and saves them out to image files
+
 import os
 
 import cv2
