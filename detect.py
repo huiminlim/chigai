@@ -18,7 +18,7 @@ mask_image = f"{DATA_DIR}\\mask.jpg"
 
 actual = cv2.imread(actual_image)
 mask = cv2.imread(mask_image, 0)
-actual = cv2.bitwise_and(actual, actual, mask = mask)
+actual = cv2.bitwise_and(actual, actual, mask=mask)
 # cv2.imshow("", before)
 # cv2.waitKey(1)
 
