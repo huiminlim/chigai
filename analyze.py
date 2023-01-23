@@ -41,16 +41,18 @@ for row in range(32):
         mapping[(row, col)] = False
 
 idx_col = 0
+delta = 0
 for col in all_ys:
     idx = 0
-    delta = 0
     for i in range(len(col)-1):
         diff = col[i+1] - col[i]
-        if diff < 1.5 * tempalte_height :
+        print(col[i+1], col[i])
+        if diff < 1.5 * tempalte_height:
             idx += 1
             if delta == 0 or diff < delta:
                 delta = diff
         else:
+            print(diff, delta)
             idx += diff // delta
         mapping[(idx, idx_col)] = True
     idx_col += 1
