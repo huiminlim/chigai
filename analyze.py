@@ -23,20 +23,20 @@ for x in range(32):
     for y in range(32):
         indexes[(x,y)] = False
 
-out = []
-prev_y = corner_y
-for col in points:
-    for point in col:
-        x = point[0]
-        y = point[1]
-        idx_x = abs(x-corner_x) // template_width
-        idx_y = abs(y-prev_y) // tempalte_height
-        print(x, y, idx_x, idx_y)
-        out.append((idx_x, idx_y))
-    # print()
-    break
+ys = []
+ys.append(corner_y)
+for p in points[0]:
+    ys.append(p[1])
+ys.sort()
+print(ys)
 
-out.sort()
-for p in out:
-    print(p)
-
+idx = 0
+delta = 0
+for i in range(len(ys)-1):
+    diff = ys[i+1]-ys[i]
+    if diff < 1.5 * tempalte_height :
+        idx += 1
+        if delta == 0 or diff < delta:
+            delta = diff
+    else:
+        idx += diff // delta
