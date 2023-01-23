@@ -23,22 +23,46 @@ for x in range(32):
     for y in range(32):
         indexes[(x,y)] = False
 
-ys = []
-ys.append(corner_y)
-for p in points[1]:
-    ys.append(p[1])
-ys.sort()
-print(ys)
+# Prepend the corner point to the first column
+points[0].insert(0, [corner_x, corner_y])
 
-idx = 0
-delta = 0
-for i in range(len(ys)-1):
-    diff = ys[i+1]-ys[i]
-    if diff < 1.5 * tempalte_height :
-        idx += 1
-        if delta == 0 or diff < delta:
-            delta = diff
-    else:
-        idx += diff // delta
+all_ys = []
+for col in points:
+    ys = []
+    for [x,y] in col:
+        ys.append(y)
+    ys.sort()
+    all_ys.append(ys)
 
-    print(idx, diff)
+# Generate map
+mapping = {}
+for row in range(32):
+    for col in range(32):
+        mapping[(row, col)] = False
+
+idx_col = 0
+for col in all_ys:
+    idx = 0
+    delta = 0
+    for i in range(len(col)-1):
+        diff = col[i+1] - col[i]
+        if diff < 1.5 * tempalte_height :
+            idx += 1
+            if delta == 0 or diff < delta:
+                delta = diff
+        else:
+            idx += diff // delta
+        mapping[(idx, idx_col)] = True
+    idx_col += 1
+
+col_idx = 0
+for col in all_ys:
+    top = col[0]
+    if abs(top - corner_y) < 1.5 * tempalte_height:
+        mapping[(0, col_idx)] = True
+    col_idx += 1
+
+mapping[(0, 0)] = False
+
+result = [(row, col) for (row, col), status in mapping.items() if status ==False]
+print(result)

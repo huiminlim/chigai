@@ -36,7 +36,6 @@ template_width, template_height = template_grey.shape
 points = []
 for x, y in peak_local_max(result, threshold_abs=0.7):
     points.append([y, x])
-points.sort()
 
 for point in points:
     x = point[1]
