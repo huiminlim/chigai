@@ -25,7 +25,7 @@ for x in range(32):
 
 ys = []
 ys.append(corner_y)
-for p in points[0]:
+for p in points[1]:
     ys.append(p[1])
 ys.sort()
 print(ys)
@@ -40,3 +40,5 @@ for i in range(len(ys)-1):
             delta = diff
     else:
         idx += diff // delta
+
+    print(idx, diff)
